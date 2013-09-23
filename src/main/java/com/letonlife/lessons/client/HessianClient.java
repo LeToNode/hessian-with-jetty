@@ -3,7 +3,7 @@ package com.letonlife.lessons.client;
 import com.caucho.hessian.client.HessianProxyFactory;
 import com.letonlife.lessons.service.Basic;
 
-
+import java.io.*;
 
 
 /**
@@ -21,6 +21,16 @@ public class HessianClient {
 
         System.out.println("sayHello: " + basic.sayHello("leton"));
 
+        InputStream in=null;
+
+        try {
+            in = new FileInputStream("C:/ideaIU-12.1.4.exe");  //大文件不支持
+            basic.upload("some file", in);
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } finally {
+            in.close();
+        }
 
     }
 }
